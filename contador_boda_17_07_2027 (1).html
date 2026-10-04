@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cuenta atrás - 17 de julio de 2027</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#faf7f1;color:#241f1a;font-family:Georgia,"Times New Roman",serif}
+  .wrap{max-width:1100px;margin:auto;padding:70px 30px 55px;text-align:center}
+  .eyebrow{font:11px Arial,sans-serif;letter-spacing:5px;color:#bd7d28;margin-bottom:20px}
+  h1{font-size:clamp(38px,6vw,64px);font-weight:400;margin:0 0 55px}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .box{border:1px solid #e9dfd2;background:#fffdf9;min-height:190px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+  .num{font-size:clamp(48px,7vw,78px);font-weight:400;line-height:1;font-variant-numeric:tabular-nums}
+  .label{font:10px Arial,sans-serif;letter-spacing:4px;color:#bd7d28;margin-top:20px}
+  .date{margin-top:48px;font:11px Arial,sans-serif;letter-spacing:3px;color:#8d6b4c}
+  .heart{margin-top:18px;font-size:20px;color:#bd7d28}
+  @media(max-width:650px){
+    .wrap{padding:40px 16px}
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .box{min-height:145px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">CUENTA ATRÁS</div>
+  <h1>Faltan pocos días</h1>
+  <div class="grid">
+    <div class="box"><div class="num" id="days">0</div><div class="label">DÍAS</div></div>
+    <div class="box"><div class="num" id="hours">00</div><div class="label">HORAS</div></div>
+    <div class="box"><div class="num" id="minutes">00</div><div class="label">MINUTOS</div></div>
+    <div class="box"><div class="num" id="seconds">00</div><div class="label">SEGUNDOS</div></div>
+  </div>
+  <div class="date">SÁBADO, 17 DE JULIO DE 2027</div>
+  <div class="heart">♡</div>
+</div>
+<script>
+const target = new Date("2027-07-17T00:00:00");
+function update(){
+  let diff=Math.max(0,target.getTime()-Date.now());
+  let total=Math.floor(diff/1000);
+  const days=Math.floor(total/86400); total%=86400;
+  const hours=Math.floor(total/3600); total%=3600;
+  const minutes=Math.floor(total/60); const seconds=total%60;
+  document.getElementById("days").textContent=days;
+  document.getElementById("hours").textContent=String(hours).padStart(2,"0");
+  document.getElementById("minutes").textContent=String(minutes).padStart(2,"0");
+  document.getElementById("seconds").textContent=String(seconds).padStart(2,"0");
+}
+update(); setInterval(update,250);
+</script>
+</body>
+</html>
